@@ -13,7 +13,7 @@ import Data.Drasil.Quantities.PhysicalProperties (mass)
 
 
 dataDefs :: [DataDefinition]
-dataDefs = [positionGDD, positionXDD_1, positionYDD_1, positionXDD_2, positionYDD_2, 
+dataDefs = [positionXDD_1, positionYDD_1, positionXDD_2, positionYDD_2, 
   accelGDD, forceGDD]
 
 ------------------------

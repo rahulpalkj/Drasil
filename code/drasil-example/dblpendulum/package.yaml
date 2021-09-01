@@ -25,7 +25,7 @@ dependencies:
 - drasil-printers
 - drasil-theory
 - drasil-utils
-
+- swhs
 library:
   source-dirs: lib
   when:

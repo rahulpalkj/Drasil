@@ -1,5 +1,5 @@
 {-# LANGUAGE PostfixOperators #-}
-module Drasil.DblPendulum.Body where
+module Drasil.DblPendulum.Body(si, srs, printSetting, dblODEInfo, fullSI) where
 
 import Language.Drasil hiding (organization, section)
 import Theory.Drasil (TheoryModel)
@@ -40,7 +40,7 @@ import Drasil.DblPendulum.Unitals (lenRod_1, lenRod_2, symbols, inputs, outputs,
   inConstraints, outConstraints, acronyms)
 import Drasil.DblPendulum.Requirements (funcReqs, nonFuncReqs)
 import Drasil.DblPendulum.References (citations, koothoor2013, smithLai2005)
-
+import Drasil.DblPendulum.ODEs(dblODEInfo)
 
 srs :: Document
 srs = mkDoc mkSRS (S.forGen titleize phrase) si

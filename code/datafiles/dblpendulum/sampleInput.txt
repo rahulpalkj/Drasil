@@ -1,0 +1,12 @@
+#lenRod_1
+2
+#lenRod_2
+2
+#massObj_1
+1
+#massObj_2
+2
+#tstep	(s)
+0.01
+#TSim	(s)
+10

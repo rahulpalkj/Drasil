@@ -12,11 +12,11 @@ import Data.Drasil.Quantities.PhysicalProperties as QPP (len, mass)
 import Data.Drasil.SI_Units (metre, degree, kilogram, newton)
 import qualified Data.Drasil.Quantities.Physics as QP (position, force, velocity,
   angularVelocity, angularAccel, gravitationalAccel, tension, acceleration, time)
-import Data.Drasil.Concepts.Physics (twoD)
+import Data.Drasil.Concepts.Physics (twoD, gravitationalAccel)
 import Data.Drasil.Concepts.Math as CM (angle, xDir, yDir)
 import Data.Drasil.Quantities.Math as QM (unitVect, unitVectj, pi_)
 import Drasil.DblPendulum.Concepts (firstRod, secondRod, firstObject, secondObject, horizontalPos,
-  verticalPos, horizontalVel, verticalVel, horizontalAccel, verticalAccel)
+  verticalPos, horizontalVel, verticalVel, horizontalAccel, verticalAccel, depVariables)
 import Data.Drasil.Units.Physics (velU, accelU, angVelU, angAccelU)
 
 
@@ -150,27 +150,29 @@ pendDisAngle_2 = makeUCWDS "theta_2" (nounPhraseSent $ phraseNP (angle `the_ofTh
 unitless :: [DefinedQuantityDict]
 unitless = [QM.unitVect, QM.unitVectj, QM.pi_]
 
-lRod, label1, label2, labelx, labely, initial:: Symbol
+lRod, label1, label2, labelx, labely, initial, array:: Symbol
 lRod = label "rod"
 labelx = label "x"
 labely = label "y"
 initial = label "i"
 label1  = Integ 1
 label2  = Integ 2
-
+array = label "arr"
 ----------------
 -- CONSTRAINT --
 ----------------
 lenRodCon_1, lenRodCon_2, pendDisAngleCon_1, pendDisAngleCon_2, massCon_1, massCon_2,
-  angAccelOutCon_1, angAccelOutCon_2 :: ConstrConcept
-lenRodCon_1       = constrained' lenRod_1 [gtZeroConstr] (dbl 1)
-lenRodCon_2       = constrained' lenRod_2 [gtZeroConstr] (dbl 1)
-pendDisAngleCon_1 = constrained' pendDisAngle_1 [gtZeroConstr] (dbl 30)
-pendDisAngleCon_2 = constrained' pendDisAngle_2 [gtZeroConstr] (dbl 30)
-massCon_1         = constrained' massObj_1 [gtZeroConstr] (dbl 0.5)
-massCon_2         = constrained' massObj_2 [gtZeroConstr] (dbl 0.5)
-angAccelOutCon_1  = constrained' angularAccel_1 [gtZeroConstr] (exactDbl 0)
-angAccelOutCon_2  = constrained' angularAccel_2 [gtZeroConstr] (exactDbl 0)
+  angAccelOutCon_1, angAccelOutCon_2, sysOdeVariables :: ConstrConcept
+lenRodCon_1        = constrained' lenRod_1 [gtZeroConstr] (dbl 1)
+lenRodCon_2        = constrained' lenRod_2 [gtZeroConstr] (dbl 1)
+pendDisAngleCon_1  = constrained' pendDisAngle_1 [gtZeroConstr] (dbl 30)
+pendDisAngleCon_2  = constrained' pendDisAngle_2 [gtZeroConstr] (dbl 30)
+massCon_1          = constrained' massObj_1 [gtZeroConstr] (dbl 0.5)
+massCon_2          = constrained' massObj_2 [gtZeroConstr] (dbl 0.5)
+angAccelOutCon_1   = constrained' angularAccel_1 [gtZeroConstr] (exactDbl 0)
+angAccelOutCon_2   = constrained' angularAccel_2 [gtZeroConstr] (exactDbl 0)
+sysOdeVariables    = constrained' (dqdNoUnit depVariables (sub lY array) (Vect Rational)) 
+                     [gtZeroConstr] (exactDbl 1)
 
 inConstraints :: [UncertQ]
 inConstraints = map (`uq` defaultUncrt) [lenRodCon_1, lenRodCon_2, pendDisAngleCon_1, pendDisAngleCon_2,

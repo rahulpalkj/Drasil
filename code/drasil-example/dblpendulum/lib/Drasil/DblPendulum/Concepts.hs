@@ -36,10 +36,11 @@ firstObject     = compoundNC first object
 secondObject    = compoundNC second_ object
 
 defs :: [ConceptChunk]
-defs = [arcLen]
+defs = [arcLen, depVariables]
 
-arcLen :: ConceptChunk
+arcLen, depVariables :: ConceptChunk
 arcLen = dcc "arc length" (nounPhraseSP "arc length") "the distance between two points on a curve"
+depVariables = dcc "dependentVariables" (nounPhraseSP "Dependent Variable") "dependents variables in a system ODE"
 
 progName :: CI
 progName = commonIdeaWithDict "pendulumTitle" (pn "Pendulum") "DblPendulum" [physics]
