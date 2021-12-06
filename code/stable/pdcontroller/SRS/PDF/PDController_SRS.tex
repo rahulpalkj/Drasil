@@ -174,7 +174,7 @@ The purpose of this document is to capture all the necessary information includi
 
 \subsection{Scope of Requirements}
 \label{Sec:ReqsScope}
-The scope of the requirements includes a PD Control Loop with three subsystems, namely: a PD Controller, a Summing Point, and a Power Plant. Only the Proportional and Derivative controllers are used in this software; the Integral controller is beyond the scope of this project. Additionally, this software is intended to aid with the manual tuning of the PD Controller.
+The scope of the requirements includes a PD Control Loop with four subsystems, namely: a PD Controller, Control Value, Process and a Sensor. Only the Proportional and Derivative controllers are used in this software; the Integral controller is beyond the scope of this project. Additionally, this software is intended to aid with the manual tuning of the PD Controller.
 
 \subsection{Characteristics of Intended Reader}
 \label{Sec:ReaderChars}
@@ -237,12 +237,12 @@ A system is needed to provide a model of a PD Controller that can be used for th
 This subsection provides a list of terms that are used in the subsequent sections and their meaning, with the purpose of reducing ambiguity and making it easier to correctly understand the requirements.
 
 \begin{itemize}
-\item{PD Control Loop: Closed-Loop control system with PD Controller, Summing Point and Power Plant.}
+\item{PD Control Loop: Closed-Loop control system with PD Controller, Control Value Process and a Sensor.}
 \item{PD Controller: Proportional-Derivative Controller.}
 \item{Summing Point: Control block where the difference between the Set-Point and the Process Variable is computed.}
-\item{Power Plant: A second order system to be controlled.}
+\item{Process: A system to be controlled.}
 \item{Second Order System: A system whose input-output relationship is denoted by a second-order differential equation.}
-\item{Process Error: Input to the PID controller. Process Error is the difference between the Set-Point and the Process Variable.}
+\item{Process Error: Input to the PD controller. Process Error is the difference between the Set-Point and the Process Variable.}
 \item{Simulation Time: Total execution time of the PD simulation.}
 \item{Process Variable: The output value from the power plant.}
 \item{Set-Point: The desired value that the control system must reach. This also knows as the reference variable.}
@@ -253,7 +253,7 @@ This subsection provides a list of terms that are used in the subsequent section
 \item{Frequency domain: The analysis of mathematical functions in terms of frequency, instead of time.}
 \item{Time domain: The analysis of mathematical functions in terms of time.}
 \item{Laplace transform: An integral transform that converts a function of a real variable t (often time) to a function of a complex variable s (complex frequency).}
-\item{Control Variable: The Control Variable is the output of the PD controller.}
+\item{Control Output Variable: The Control Output Variable is the output of the PD controller.}
 \item{Step Time: Simulation step time.}
 \item{Absolute Tolerance: Absolute tolerance for the integrator.}
 \item{Relative Tolerance: Relative tolerance for the integrator.}
